@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.nimra.newsdroid.addnews">
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="#dd4739"
+        android:text="NEWS"
+        android:textAlignment="center"
+        android:textSize="30dp"
+        android:layout_alignParentLeft="true" />
+
+
+    <Button
+        android:id="@+id/newsadd"
+        android:layout_width="68dp"
+        android:layout_height="38dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginEnd="24dp"
+        android:text="Add"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="24dp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textView6"
+        android:layout_alignParentLeft="true"
+        android:id="@+id/list"/>
+
+
+</RelativeLayout>

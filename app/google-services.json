@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "430135792486",
+    "firebase_url": "https://newsdroid-203c1.firebaseio.com",
+    "project_id": "newsdroid-203c1",
+    "storage_bucket": "newsdroid-203c1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:430135792486:android:044e5b4fb4f80415",
+        "android_client_info": {
+          "package_name": "com.example.nimra.newsdroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "430135792486-37apmb6gs7geqot1r1rmi6o1h8bif0ro.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAo9ZbBGKQc7nq4ErNZidJGgE-wsjSW3kA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
