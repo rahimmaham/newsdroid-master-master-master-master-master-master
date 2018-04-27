@@ -25,10 +25,10 @@ public class login extends AppCompatActivity implements View.OnClickListener{
     private EditText email;
     private EditText password;
     private TextView signup;
-
+    private TextView Adminsignup;
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
-
+    private boolean x ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,16 +38,22 @@ public class login extends AppCompatActivity implements View.OnClickListener{
         firebaseAuth = FirebaseAuth.getInstance();
 
         if(firebaseAuth.getCurrentUser() != null){
-            finish();
-            startActivity(new Intent(getApplicationContext(), MyProfile.class));
 
+            if(firebaseAuth.getCurrentUser().getEmail() != "admin@yahoo.com") {
+                finish();
+                startActivity(new Intent(getApplicationContext(), MyProfile.class));
+            }
+            else{
+                finish();
+                startActivity(new Intent(getApplicationContext(), AdminProfile.class));
+            }
         }
 
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
         login = (Button) findViewById(R.id.login);
         signup = (TextView) findViewById(R.id.signup);
-
+        Adminsignup = (TextView) findViewById(R.id.adminsignup);
 
         progressDialog = new ProgressDialog(this);
 
@@ -55,12 +61,22 @@ public class login extends AppCompatActivity implements View.OnClickListener{
         signup.setOnClickListener(this);
 
 
+        //Admin wala kaaam
+
+        Adminsignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i =new Intent(login.this,AllUsers.class);
+                startActivity(i);
+            }
+        });
+
 
 
     }
 
     private void userLogin(){
-        String emailID = email.getText().toString().trim();
+        final String emailID = email.getText().toString().trim();
         String pass = password.getText().toString().trim();
 
         if(TextUtils.isEmpty(emailID)){
@@ -86,8 +102,16 @@ public class login extends AppCompatActivity implements View.OnClickListener{
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         progressDialog.dismiss();
                         if(task.isSuccessful()){
-                            finish();
-                            startActivity(new Intent(getApplicationContext(),MyProfile.class));
+                                //if(emailID != "admin@yahoo.com") {
+                            String e="admin@yahoo.com";
+                            if(emailID.toString() != e.toString()) {
+                                    finish();
+                                    startActivity(new Intent(getApplicationContext(), MyProfile.class));
+                                }
+                                else{
+                                    finish();
+                                    startActivity(new Intent(getApplicationContext(), AdminProfile.class));
+                                }
                         }
                         else {
 

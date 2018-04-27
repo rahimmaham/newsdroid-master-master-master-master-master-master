@@ -20,7 +20,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".login" />
-        <activity android:name=".userprofile" />
         <activity android:name=".splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,8 +27,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".addnews" />
-        <activity android:name=".addnewsdes" />
         <activity
             android:name=".UserNewsFeed"
             android:label="@string/title_activity_user_news_feed"
@@ -42,7 +39,15 @@
             android:name=".NewsAdd"
             android:label="@string/title_activity_news_add"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".AdminLogin"></activity>
+        <activity android:name=".AdminLogin" />
+        <activity
+            android:name=".AdminNewsFeed"
+            android:label="@string/title_activity_admin_news_feed"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".AdminProfile"
+            android:label="@string/title_activity_admin_profile"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -234,7 +234,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             Upload upload = new Upload(taskSnapshot.getDownloadUrl().toString());
                             databaseReference.child("img").child(userID).setValue(upload);
                             finish();
-                            final Intent i = new Intent(getApplicationContext(), userprofile.class);
+                            final Intent i = new Intent(getApplicationContext(), MyProfile.class);
                             startActivity(i);
                             progressDialog.dismiss();
 
