@@ -184,8 +184,11 @@ public class NewsAdd extends AppCompatActivity
     }
 
     private void uploadFile(){
+       final String des = description.getText().toString().trim();
+       final String ti =  time.getText().toString().trim();
+       final String tit = title.getText().toString().trim();
 
-        if(mImageUri != null){
+        if(mImageUri != null && des != null && ti!= null && tit!= null){
 
             StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()
                     + "." + getFileExtension(mImageUri));
@@ -201,9 +204,6 @@ public class NewsAdd extends AppCompatActivity
                             Toast.makeText(NewsAdd.this, "News Added", Toast.LENGTH_SHORT).show();
 
 
-                            String des = description.getText().toString().trim();
-                            String ti =  time.getText().toString().trim();
-                            String tit = title.getText().toString().trim();
                             newsUpload news = new newsUpload(tit,des,ti,taskSnapshot.getDownloadUrl().toString());
                             String uploadId = databaseReference.push().getKey();
                             databaseReference.child("news").child(uploadId).setValue(news);
@@ -228,8 +228,9 @@ public class NewsAdd extends AppCompatActivity
                         }
                     });
         }else{
-            Toast.makeText(this,"No Image Selected", Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"Fill Feilds Properly", Toast.LENGTH_LONG).show();
         }
+
     }
 
 

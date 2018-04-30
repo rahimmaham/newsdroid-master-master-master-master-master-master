@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -13,16 +15,67 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AdminNewsFeed extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    private RecyclerView mRecyclerView;
+    private ImageAdapter mAdapter;
+    private DatabaseReference mDatabaseRef;
+    private List<newsUpload> mUpload;
+    private FirebaseAuth firebaseAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_news_feed);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        firebaseAuth= FirebaseAuth.getInstance();
+        if(firebaseAuth.getCurrentUser() == null){
+            finish();
+            startActivity(new Intent(this,login.class));
+        }
+
+        mRecyclerView = findViewById(R.id.list);
+        mRecyclerView.setHasFixedSize(true);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        mUpload = new ArrayList<>();
+
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("users/news");
+
+        mDatabaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()){
+                    newsUpload up = new newsUpload();
+                    String uploadId = mDatabaseRef.push().getKey();
+                    mUpload.add(postSnapshot.getValue(newsUpload.class));
+
+                }
+
+                mAdapter = new ImageAdapter(AdminNewsFeed.this, mUpload);
+
+                mRecyclerView.setAdapter(mAdapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Toast.makeText(AdminNewsFeed.this, databaseError.getMessage(), Toast.LENGTH_LONG).show();
+
+            }
+        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -60,7 +113,9 @@ public class AdminNewsFeed extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            firebaseAuth.signOut();
+            finish();
+            startActivity(new Intent(this,login.class));
         }
 
         return super.onOptionsItemSelected(item);

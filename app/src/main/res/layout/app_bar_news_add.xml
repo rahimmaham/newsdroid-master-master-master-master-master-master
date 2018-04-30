@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.nimra.newsdroid.NewsAdd"
-    android:background="#fff ">
+    android:layout_marginRight="16dp"
+    tools:context="com.example.nimra.newsdroid.NewsAdd">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"

@@ -82,9 +82,9 @@ public class AdminProfile extends AppCompatActivity
                     uInfo.setUsername(ds.child(userID).getValue(userInfo.class).getUsername());
                     uInfo.setUsercity(ds.child(userID).getValue(userInfo.class).getUsercity());
                     uInfo.setUserphonenumber(ds.child(userID).getValue(userInfo.class).getUserphonenumber());
-                    uname.setText("Name: " + uInfo.getUsername());
-                    ucity.setText("City: "+uInfo.getUsercity());
-                    uphone.setText("Phone: "+uInfo.getUserphonenumber());
+                    uname.setText(uInfo.getUsername());
+                    ucity.setText(uInfo.getUsercity());
+                    uphone.setText(uInfo.getUserphonenumber());
 
                     Upload up = new Upload();
                     up.setmImageUrl(ds.child("img").child(userID).getValue(Upload.class).getmImageUrl());
@@ -103,7 +103,7 @@ public class AdminProfile extends AppCompatActivity
         });
 
 
-        uemail.setText("Email: " + user.getEmail());
+        uemail.setText(user.getEmail());
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -141,7 +141,9 @@ public class AdminProfile extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            firebaseAuth.signOut();
+            finish();
+            startActivity(new Intent(this,login.class));
         }
 
         return super.onOptionsItemSelected(item);

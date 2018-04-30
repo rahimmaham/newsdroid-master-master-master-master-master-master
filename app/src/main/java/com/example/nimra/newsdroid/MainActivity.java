@@ -11,6 +11,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -77,7 +78,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //Button buttonLoadImage = (Button) findViewById(R.id.addimage);
         imageView=(ImageView)findViewById(R.id.image);
         imageView.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View view) {
 
@@ -136,51 +136,55 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void registerUser(){
         String emailid = email.getText().toString().trim();
         String pass = password.getText().toString().trim();
-        final String username = name.getText().toString().trim();
+       final String username = name.getText().toString().trim();
         final String usercity = city.getText().toString().trim();
         final String userphonenumber = phonenumber.getText().toString().trim();
 
 
-        if(TextUtils.isEmpty(emailid)){
+        if(TextUtils.isEmpty(emailid)&& !(Patterns.EMAIL_ADDRESS.matcher(emailid).matches())){
             //email is empty
-            Toast.makeText(this, "Please Enter Email ID", Toast.LENGTH_LONG).show();
+            email.setError("Please Enter Correct Email ID");
+            //Toast.makeText(this, "Please Enter Correct Email ID", Toast.LENGTH_LONG).show();
             //stopping the function execution further
             return;
         }
 
-        if(TextUtils.isEmpty(pass)){
+        else if(TextUtils.isEmpty(pass)){
             //password is empty
             Toast.makeText(this, "Please Enter Password", Toast.LENGTH_LONG).show();
             //stopping the function execution further
             return;
         }
 
-        if(TextUtils.isEmpty(username)){
+        else if(TextUtils.isEmpty(username)){
             //password is empty
             Toast.makeText(this, "Please Enter User Name", Toast.LENGTH_LONG).show();
             //stopping the function execution further
             return;
         }
 
-        if(TextUtils.isEmpty(usercity)){
+        else if(TextUtils.isEmpty(usercity)){
             //password is empty
             Toast.makeText(this, "Please Enter City", Toast.LENGTH_LONG).show();
             //stopping the function execution further
             return;
         }
 
-        if(TextUtils.isEmpty(userphonenumber)){
+        else if(TextUtils.isEmpty(userphonenumber) && userphonenumber.length()!=11){
             //password is empty
-            Toast.makeText(this, "Please Enter Phone Number", Toast.LENGTH_LONG).show();
+            phonenumber.setError("Please Enter Phone Number");
+            //Toast.makeText(this, "Please Enter Phone Number", Toast.LENGTH_LONG).show();
             //stopping the function execution further
             return;
         }
 
 
 
-        progressDialog.setMessage("Registering User...");
-        progressDialog.show();
-
+        else {
+            progressDialog.setMessage("Registering User...");
+            progressDialog.show();
+        }
+cc                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
 
 
 
@@ -200,6 +204,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                         }
                         else{
+                            progressDialog.dismiss();
                             Toast.makeText(MainActivity.this, "Registered not Successfull", Toast.LENGTH_LONG).show();
                         }
                     }

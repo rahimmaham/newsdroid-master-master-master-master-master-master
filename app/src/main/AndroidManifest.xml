@@ -20,7 +20,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".login" />
-        <activity android:name=".splash">
+        <activity android:name=".splash"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -39,7 +40,6 @@
             android:name=".NewsAdd"
             android:label="@string/title_activity_news_add"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".AdminLogin" />
         <activity
             android:name=".AdminNewsFeed"
             android:label="@string/title_activity_admin_news_feed"

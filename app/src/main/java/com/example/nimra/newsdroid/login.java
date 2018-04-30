@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -53,7 +54,6 @@ public class login extends AppCompatActivity implements View.OnClickListener{
         password = (EditText) findViewById(R.id.password);
         login = (Button) findViewById(R.id.login);
         signup = (TextView) findViewById(R.id.signup);
-        Adminsignup = (TextView) findViewById(R.id.adminsignup);
 
         progressDialog = new ProgressDialog(this);
 
@@ -63,13 +63,6 @@ public class login extends AppCompatActivity implements View.OnClickListener{
 
         //Admin wala kaaam
 
-        Adminsignup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i =new Intent(login.this,AllUsers.class);
-                startActivity(i);
-            }
-        });
 
 
 
@@ -79,9 +72,9 @@ public class login extends AppCompatActivity implements View.OnClickListener{
         final String emailID = email.getText().toString().trim();
         String pass = password.getText().toString().trim();
 
-        if(TextUtils.isEmpty(emailID)){
+        if(TextUtils.isEmpty(emailID) && !Patterns.EMAIL_ADDRESS.matcher(emailID).matches()){
             //email is empty
-            Toast.makeText(this, "Please Enter Email ID", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Please Enter Correct Email ID", Toast.LENGTH_LONG).show();
             //stopping the function execution further
             return;
         }
@@ -104,13 +97,15 @@ public class login extends AppCompatActivity implements View.OnClickListener{
                         if(task.isSuccessful()){
                                 //if(emailID != "admin@yahoo.com") {
                             String e="admin@yahoo.com";
-                            if(emailID.toString() != e.toString()) {
-                                    finish();
-                                    startActivity(new Intent(getApplicationContext(), MyProfile.class));
+                            if(emailID.equalsIgnoreCase(e)) {
+                                finish();
+                                startActivity(new Intent(getApplicationContext(), AdminProfile.class));
                                 }
                                 else{
-                                    finish();
-                                    startActivity(new Intent(getApplicationContext(), AdminProfile.class));
+
+                                finish();
+                                startActivity(new Intent(getApplicationContext(), MyProfile.class));
+
                                 }
                         }
                         else {

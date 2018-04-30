@@ -5,69 +5,112 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:showIn="@layout/app_bar_my_profile"
-    android:background="#fff">
-
-
+    android:background="@drawable/images"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
 
     <ImageView
         android:id="@+id/userimage"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_below="@+id/textView6"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="66dp"
+        android:layout_marginTop="91dp"
         android:src="@drawable/profile" />
 
     <TextView
-        android:textColor="#000"
-        android:background="#fff"
-        android:id="@+id/username"
-        android:layout_width="wrap_content"
+        android:id="@+id/txtuser"
+        android:layout_width="115dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/userimage"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="23dp"
-        android:text="Name"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="14dp"
+        android:layout_marginStart="14dp"
+        android:text="User Name: "
+        android:textColor="#fff"
         android:textSize="20sp" />
 
     <TextView
-        android:background="#fff"
-        android:textColor="#000"
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/txtuser"
+        android:layout_alignBottom="@+id/txtuser"
+        android:layout_toEndOf="@+id/txtuser"
+        android:layout_toRightOf="@+id/txtuser"
+        android:text="Name"
+        android:textColor="#fff"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/txtemail"
+        android:layout_width="115dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtuser"
+        android:layout_alignStart="@+id/txtuser"
+        android:layout_below="@+id/txtuser"
+        android:layout_marginTop="12dp"
+        android:text="Eamil ID: "
+        android:textColor="#fff"
+        android:textSize="20sp" />
+
+    <TextView
         android:id="@+id/useremail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/username"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="14dp"
+        android:layout_alignBaseline="@+id/txtemail"
+        android:layout_alignBottom="@+id/txtemail"
+        android:layout_toEndOf="@+id/txtemail"
+        android:layout_toRightOf="@+id/txtemail"
         android:text="Email"
+        android:textColor="#fff"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/txtcity"
+        android:layout_width="115dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtemail"
+        android:layout_alignStart="@+id/txtemail"
+        android:layout_below="@+id/txtemail"
+        android:layout_marginTop="13dp"
+        android:text="City: "
+        android:textColor="#fff"
         android:textSize="20sp" />
 
     <TextView
         android:id="@+id/usercity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/username"
-        android:layout_alignStart="@+id/username"
-        android:layout_below="@+id/useremail"
-        android:layout_marginTop="18dp"
-        android:background="#fff"
+        android:layout_alignBaseline="@+id/txtcity"
+        android:layout_alignBottom="@+id/txtcity"
+        android:layout_toEndOf="@+id/txtcity"
+        android:layout_toRightOf="@+id/txtcity"
         android:text="City"
-        android:textColor="#000"
+        android:textColor="#fff"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/txtcontact"
+        android:layout_width="115dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/txtcity"
+        android:layout_alignStart="@+id/txtcity"
+        android:layout_below="@+id/txtcity"
+        android:layout_marginTop="15dp"
+        android:text="Phone No : "
+        android:textColor="#fff"
         android:textSize="20sp" />
 
     <TextView
         android:id="@+id/userphone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/usercity"
-        android:layout_alignStart="@+id/usercity"
-        android:layout_below="@+id/usercity"
-        android:layout_marginTop="25dp"
-        android:background="#fff"
+        android:layout_alignBaseline="@+id/txtcontact"
+        android:layout_alignBottom="@+id/txtcontact"
+        android:layout_toEndOf="@+id/txtcontact"
+        android:layout_toRightOf="@+id/txtcontact"
         android:text="Phone"
-        android:textColor="#000"
+        android:textColor="#fff"
         android:textSize="20sp" />
-
-
-
 </RelativeLayout>

@@ -1,67 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:showIn="@layout/app_bar_news_add"
-    android:background="#fff">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:showIn="@layout/app_bar_news_add"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    android:background="@drawable/images">
+
+
+    <TextView
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add News"
+        android:textSize="40sp"
+        android:textColor="#fff"
+        android:layout_marginLeft="22dp"
+        android:layout_marginTop="30dp"
+        android:id="@+id/txtaddnews"/>
+
+    <TextView
+        android:layout_marginLeft="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/newsimg"
+        android:layout_marginTop="35dp"
+        android:text="News Title: "
+        android:textColor="#fff"
+        android:textSize="20sp"
+        android:id="@+id/txttitle"/>
 
     <EditText
-        android:textColorHint="#000"
+        android:textColor="#fff"
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/txttitle"
+        android:layout_alignBottom="@+id/txttitle"
+        android:layout_marginLeft="17dp"
+        android:layout_marginStart="17dp"
+        android:layout_toEndOf="@+id/txttitle"
+        android:layout_toRightOf="@+id/txttitle"
+        android:ems="10"
+        android:hint="Title"
+        android:inputType="textPersonName"
+        android:textColorHint="#dcdbdb" />
+
+    <TextView
+        android:layout_marginLeft="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txttitle"
+        android:layout_marginTop="15dp"
+        android:text="Description: "
+        android:textColor="#fff"
+        android:textSize="20sp"
+        android:id="@+id/txtdescription"/>
+
+    <EditText
+        android:textColor="#fff"
         android:id="@+id/description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/time"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/time"
-        android:layout_marginTop="50dp"
+        android:layout_alignBaseline="@+id/txtdescription"
+        android:layout_alignBottom="@+id/txtdescription"
+        android:layout_alignLeft="@+id/title"
+        android:layout_alignStart="@+id/title"
         android:ems="10"
+        android:hint="Description"
         android:inputType="textPersonName"
-        android:hint="Description" />
+        android:textColorHint="#dcdbdb" />
 
-        <EditText
-            android:id="@+id/time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/description"
-            android:layout_centerHorizontal="true"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:hint="Time"
-            android:textColorHint="#000"/>
 
-        <EditText
-            android:id="@+id/title"
+    <TextView
+        android:layout_marginLeft="25dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtdescription"
+        android:layout_marginTop="15dp"
+        android:text="Time: "
+        android:textColor="#fff"
+        android:textSize="20sp"
+        android:id="@+id/txttimen"/>
 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/time"
-            android:layout_centerHorizontal="true"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:textColorHint="#000"
-            android:hint="Title" />
+    <EditText
+        android:textColor="#fff"
+        android:id="@+id/time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/txttimen"
+        android:layout_alignBottom="@+id/txttimen"
+        android:layout_alignLeft="@+id/description"
+        android:layout_alignStart="@+id/description"
+        android:ems="10"
+        android:hint="Time"
+        android:inputType="textPersonName"
+        android:textColorHint="#dcdbdb" />
+
 
     <ImageView
         android:id="@+id/newsimg"
         android:layout_width="200dp"
         android:layout_height="150dp"
-        android:layout_below="@+id/title"
+        android:layout_below="@+id/txtaddnews"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="12dp"
         app:srcCompat="@drawable/addnews" />
 
     <Button
         android:id="@+id/add"
-        android:layout_width="150dp"
+        android:layout_width="80dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="60dp"
+        android:layout_marginTop="420dp"
         android:background="#dd4739"
         android:text="ADD"
         android:textColor="#fff"
-        android:textSize="25dp" />
+        android:textSize="20sp"
+        android:textStyle="bold"/>
 
-    </RelativeLayout>
+</RelativeLayout>
