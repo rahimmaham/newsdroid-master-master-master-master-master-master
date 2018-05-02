@@ -116,7 +116,7 @@ public class UserNewsFeed extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_logout) {
             firebaseAuth.signOut();
-            finish();
+            finishAffinity();
             startActivity(new Intent(this,login.class));
         }
 

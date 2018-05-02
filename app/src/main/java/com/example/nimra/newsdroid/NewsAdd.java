@@ -10,6 +10,8 @@ import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.text.TextUtils;
+import android.util.Patterns;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -147,7 +149,7 @@ public class NewsAdd extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_logout) {
             firebaseAuth.signOut();
-            finish();
+            finishAffinity();
             startActivity(new Intent(this,login.class));
         }
 
@@ -188,7 +190,32 @@ public class NewsAdd extends AppCompatActivity
        final String ti =  time.getText().toString().trim();
        final String tit = title.getText().toString().trim();
 
-        if(mImageUri != null && des != null && ti!= null && tit!= null){
+
+
+        if(TextUtils.isEmpty(tit)){
+            //password is empty
+            title.setError("Please Enter Tittle");
+            // Toast.makeText(this, "Please Enter Password", Toast.LENGTH_LONG).show();
+            //stopping the function execution further
+            return;
+        }
+        if(TextUtils.isEmpty(des)){
+            //email is empty
+            description.setError("Please Enter Description");
+            //Toast.makeText(this, "Please Enter Correct Email ID", Toast.LENGTH_LONG).show();
+            //stopping the function execution further
+            return;
+        }
+
+        if(TextUtils.isEmpty(ti)){
+            //password is empty
+            time.setError("Please Enter Time");
+            //Toast.makeText(this, "Please Enter City", Toast.LENGTH_LONG).show();
+            //stopping the function execution further
+            return;
+        }
+
+        if(mImageUri != null){
 
             StorageReference fileReference = mStorageRef.child(System.currentTimeMillis()
                     + "." + getFileExtension(mImageUri));
@@ -227,8 +254,9 @@ public class NewsAdd extends AppCompatActivity
 
                         }
                     });
-        }else{
-            Toast.makeText(this,"Fill Feilds Properly", Toast.LENGTH_LONG).show();
+        }
+        else{
+            Toast.makeText(this,"Please Select Any Image ", Toast.LENGTH_LONG).show();
         }
 
     }

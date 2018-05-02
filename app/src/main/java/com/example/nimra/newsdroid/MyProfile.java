@@ -147,7 +147,7 @@ public class MyProfile extends AppCompatActivity implements NavigationView.OnNav
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_logout) {
             firebaseAuth.signOut();
-            finish();
+            finishAffinity();
             startActivity(new Intent(this,login.class));
         }
 

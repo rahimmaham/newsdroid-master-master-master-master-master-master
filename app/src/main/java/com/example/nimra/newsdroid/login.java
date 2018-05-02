@@ -59,29 +59,24 @@ public class login extends AppCompatActivity implements View.OnClickListener{
 
         login.setOnClickListener(this);
         signup.setOnClickListener(this);
-
-
-        //Admin wala kaaam
-
-
-
-
     }
 
     private void userLogin(){
         final String emailID = email.getText().toString().trim();
         String pass = password.getText().toString().trim();
 
-        if(TextUtils.isEmpty(emailID) && !Patterns.EMAIL_ADDRESS.matcher(emailID).matches()){
+        if(TextUtils.isEmpty(emailID) || !Patterns.EMAIL_ADDRESS.matcher(emailID).matches()){
             //email is empty
-            Toast.makeText(this, "Please Enter Correct Email ID", Toast.LENGTH_LONG).show();
+            email.setError("Please Enter Correct Email ID");
+            //Toast.makeText(this, "Please Enter Correct Email ID", Toast.LENGTH_LONG).show();
             //stopping the function execution further
             return;
         }
 
         if(TextUtils.isEmpty(pass)){
             //password is empty
-            Toast.makeText(this, "Please Enter Password", Toast.LENGTH_LONG).show();
+            password.setError("Please Enter Password");
+            //Toast.makeText(this, "Please Enter Password", Toast.LENGTH_LONG).show();
             //stopping the function execution further
             return;
         }

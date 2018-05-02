@@ -136,12 +136,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void registerUser(){
         String emailid = email.getText().toString().trim();
         String pass = password.getText().toString().trim();
-       final String username = name.getText().toString().trim();
+        final String username = name.getText().toString().trim();
         final String usercity = city.getText().toString().trim();
         final String userphonenumber = phonenumber.getText().toString().trim();
 
 
-        if(TextUtils.isEmpty(emailid)&& !(Patterns.EMAIL_ADDRESS.matcher(emailid).matches())){
+        if(TextUtils.isEmpty(username)){
+            //password is empty
+            name.setError("Please Enter User Name");
+            //Toast.makeText(this, "Please Enter User Name", Toast.LENGTH_LONG).show();
+            //stopping the function execution further
+            return;
+        }
+
+        if(TextUtils.isEmpty(emailid) || !Patterns.EMAIL_ADDRESS.matcher(emailid).matches()){
             //email is empty
             email.setError("Please Enter Correct Email ID");
             //Toast.makeText(this, "Please Enter Correct Email ID", Toast.LENGTH_LONG).show();
@@ -149,47 +157,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
-        else if(TextUtils.isEmpty(pass)){
+        if(TextUtils.isEmpty(pass)){
             //password is empty
-            Toast.makeText(this, "Please Enter Password", Toast.LENGTH_LONG).show();
+            password.setError("Please Enter Password");
+            // Toast.makeText(this, "Please Enter Password", Toast.LENGTH_LONG).show();
             //stopping the function execution further
             return;
         }
 
-        else if(TextUtils.isEmpty(username)){
+        if(TextUtils.isEmpty(usercity)){
             //password is empty
-            Toast.makeText(this, "Please Enter User Name", Toast.LENGTH_LONG).show();
+            city.setError("Please Enter City");
+            //Toast.makeText(this, "Please Enter City", Toast.LENGTH_LONG).show();
             //stopping the function execution further
             return;
         }
 
-        else if(TextUtils.isEmpty(usercity)){
+        if(TextUtils.isEmpty(userphonenumber) || userphonenumber.length()< 11){
             //password is empty
-            Toast.makeText(this, "Please Enter City", Toast.LENGTH_LONG).show();
-            //stopping the function execution further
-            return;
-        }
-
-        else if(TextUtils.isEmpty(userphonenumber) && userphonenumber.length()!=11){
-            //password is empty
-            phonenumber.setError("Please Enter Phone Number");
+            phonenumber.setError("Please Enter Correct Phone Number");
             //Toast.makeText(this, "Please Enter Phone Number", Toast.LENGTH_LONG).show();
             //stopping the function execution further
             return;
         }
 
-
-
         else {
             progressDialog.setMessage("Registering User...");
             progressDialog.show();
         }
-cc                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
-
-
-
-
-
         firebaseAuth.createUserWithEmailAndPassword(emailid,pass)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -269,9 +264,8 @@ cc
     @Override
     public void onClick(View view) {
         if(view == button){
-            uploadFile();
             registerUser();
-
+            uploadFile();
 
 
         }
@@ -281,6 +275,5 @@ cc
         }
 
     }
-
 
 }

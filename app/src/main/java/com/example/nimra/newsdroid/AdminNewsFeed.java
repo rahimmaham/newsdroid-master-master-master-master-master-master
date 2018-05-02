@@ -114,7 +114,7 @@ public class AdminNewsFeed extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             firebaseAuth.signOut();
-            finish();
+            finishAffinity();
             startActivity(new Intent(this,login.class));
         }
 

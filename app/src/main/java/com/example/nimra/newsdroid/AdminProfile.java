@@ -90,6 +90,7 @@ public class AdminProfile extends AppCompatActivity
                     up.setmImageUrl(ds.child("img").child(userID).getValue(Upload.class).getmImageUrl());
 
                     Picasso.with(AdminProfile.this).load(up.getmImageUrl().toString()).into(userimg);
+                    //library that powerfully download image
                     progressDialog.dismiss();
 
 
@@ -142,7 +143,7 @@ public class AdminProfile extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             firebaseAuth.signOut();
-            finish();
+            finishAffinity();
             startActivity(new Intent(this,login.class));
         }
 
